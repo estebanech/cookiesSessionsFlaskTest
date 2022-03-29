@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/navbar.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/body.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/auth.css')}}">
+    </head>
+    <body>
+        <div class="nav">
+            <ul>
+                <li ><a href="/">Home</a></li>
+                {% if logged %}
+                    <li ><a href="/Auth">Logout</a></li>
+                    <li ><a href="/Settings">Preferences</a></li>
+                {% else %}
+                    <li ><a href="/Auth">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% if dark_mode %}
+            <div class="main_content_dark">
+        {% else %}
+            <div class="main_content">
+        {% endif %}
+                {% if logged %}
+                    <form id="log-out-form" action="" method="post">
+                        <input class="submit out_button" type="submit" name="log-out" value="log-out">
+                    </form>
+                {% else %}
+                    <form id="basic-form" action="" method="post">
+                        <p>
+                        <label for="username">Username</label><br>
+                        <input id="username" name="username" type="text" >
+                        </p>
+                        <p>
+                        <label for="password">Password</label><br>
+                        <input id="password" type="password" name="password" required>
+                        </p>
+                        <p>
+                        <input class="submit" type="submit" value="SUBMIT">
+                        </p>
+                        {% if error %}
+                        <label class="error" for="error">Wrong User Information</label><br>
+                        {% endif %}
+                    </form>
+                {% endif %}
+            </div>
+    </body>
+</html>

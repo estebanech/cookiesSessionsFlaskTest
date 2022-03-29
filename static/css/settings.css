@@ -1,0 +1,19 @@
+.dark_mode {
+    margin-top: 40px;
+}
+
+.dark_mode label {
+    float: left;
+}
+
+.dark_mode input {
+    height: 20px;
+    width: 20px;
+}
+
+.dark_mode i {
+    margin-top: 3px;
+    margin-left: 10px;
+    float: left;
+}
+

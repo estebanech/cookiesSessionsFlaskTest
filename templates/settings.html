@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/navbar.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/body.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/settings.css')}}">
+
+        <link href='https://css.gg/dark-mode.css' rel='stylesheet'>
+    </head>
+    <body>
+        <div class="nav">
+            <ul>
+                <li ><a href="/">Home</a></li>
+                {% if logged %}
+                    <li ><a href="/Auth">Logout</a></li>
+                    <li ><a href="/Settings">Preferences</a></li>
+                {% else %}
+                    <li ><a href="/Auth">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+        {% if dark_mode %}
+            <div class="main_content_dark">
+        {% else %}
+            <div class="main_content">
+        {% endif %}
+                {% if logged %}
+                    <div class="dark_mode">
+                        <label class="switch">
+                            {% if dark_mode %}
+                                <form action="/Settings" method=post>
+                                    <input type="checkbox" checked name="dark_mode" value="dark_mode" onChange="this.form.submit()" >
+                                </form>
+                            {% else %}
+                                <form action="/Settings" method=post>
+                                    <input type="checkbox" name="dark_mode" value="dark_mode" onChange="this.form.submit()" >
+                                </form>
+                            {% endif %}
+                            <span class="slider round"></span>
+                        </label>
+                        <i class="gg-dark-mode"></i>
+                    </div>
+                {% else %}
+                        <h1>Log In first</h1>
+                {% endif %}
+            </div>
+    </body>
+</html>
